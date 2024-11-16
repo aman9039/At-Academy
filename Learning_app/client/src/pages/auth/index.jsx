@@ -37,7 +37,7 @@ function AuthPage() {
     return (
       signInFormData &&
       signInFormData.userEmail !== "" &&
-      signInFormData.password !== ""
+      signInFormData.password !== "" 
     );
   }
 
