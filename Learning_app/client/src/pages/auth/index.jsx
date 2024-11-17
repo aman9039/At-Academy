@@ -24,14 +24,11 @@ function AuthPage() {
     handleRegisterUser
   } = useContext(AuthContext);
 
-  console.log("setSignInFormData:", setSignInFormData);
-
-  console.log("setSignUpFormData:", setSignUpFormData);
-
+  
   function handleTabChange(value) {
     setActiveTab(value);
   }
-  console.log(signInFormData);
+  console.log(signUpFormData);
 
   function checkIfSignInFormIsValid() {
     return (
