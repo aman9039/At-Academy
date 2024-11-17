@@ -15,7 +15,9 @@ app.use(cors({
     origin : process.env.CLIENT_URL ,
     methods : ["GET","POST","PUT","DELETE"],
     allowedHeaders : ["Content-Type","Authorization"],
-}));
+    // credentials: true 
+})
+);
 app.use(express.json());
 
 // Connect to database 
@@ -24,6 +26,10 @@ mongoose.connect(MONGODB_URI).then(() => console.log("MongoDB is connected")
 )
 .catch((e) => console.log(e)
 );
+
+app.get("/",function(req,res){
+    res.send("hello aman")
+})
 
 // routes configuration
 app.use("/auth",authRoutes);
