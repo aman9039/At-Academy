@@ -6,8 +6,12 @@ const verifyToken = (token, secretKey) => {
 
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
+<<<<<<< HEAD
   console.log(authHeader, "authHeader");
   
+=======
+
+>>>>>>> 23a8e5a342886d56f4671f89873239e6198dca7a
   if (!authHeader) {
     return res.status(401).json({
       success: false,
