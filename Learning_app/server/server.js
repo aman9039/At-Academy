@@ -13,7 +13,7 @@ const MONGODB_URI = process.env.MONGODB_URI ;
 // cors develop a connection between clientSite and serverSite
 app.use(cors({
     origin : process.env.CLIENT_URL ,
-    methods : ["GET","POST","PUT","DELETE"],
+    methods : ["GET","POST","DELETE","PUT"],
     allowedHeaders : ["Content-Type","Authorization"],
     // credentials: true 
 })
