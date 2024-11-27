@@ -16,22 +16,18 @@ export default function AuthProvider({ children }) {
     event.preventDefault();
 
     try {
-      // Call the service and wait for the response
       const data = await registerService(signUpFormData);
     } catch (error) {
       // Handle the error
       if (error.response) {
-        // Server responded with a status other than 2xx
         console.error("Error Response:", error.response.data);
         alert(
           `Error: ${error.response.data.message || "Something went wrong"}`
         );
       } else if (error.request) {
-        // Request was made, but no response received
         console.error("No Response:", error.request);
         alert("No response from server. Please try again.");
       } else {
-        // Something else went wrong
         console.error("Error Message:", error.message);
         alert("An unexpected error occurred.");
       }
@@ -51,8 +47,7 @@ export default function AuthProvider({ children }) {
         authenticate: true,
         user: data.user,
       });
-    }
-    else{
+    } else {
       setAuth({
         authenticate: false,
         user: null,
@@ -62,27 +57,26 @@ export default function AuthProvider({ children }) {
 
   // check auth user
 
-  async function  checkAuthUser() {
+  async function checkAuthUser() {
     const data = await checkAuthService();
-    if(data.success){
+    if (data.success) {
       setAuth({
-        authenticate : true,
-        user : data.user,
-      })
-    }else{
+        authenticate: true,
+        user: data.user,
+      });
+    } else {
       setAuth({
-        authenticate : false,
-        user : null,
+        authenticate: false,
+        user: null,
       });
     }
   }
 
   useEffect(() => {
-    checkAuthUser()
-  },[]);
+    checkAuthUser();
+  }, []);
 
-console.log(auth);
-
+  console.log(auth);
 
   return (
     <AuthContext.Provider
