@@ -37,22 +37,23 @@ export default function AuthProvider({ children }) {
   async function handleLoginUser(event) {
     event.preventDefault();
     const data = await loginService(signInFormData);
+    console.log(data,"dadaaaaaa");
 
-    if (data.success) {
+    if(data.success){
       sessionStorage.setItem(
-        "accessToken",
-        JSON.stringify(data.data.accessToken)
+        "accessToken",JSON.stringify(data.data.acceessToken)
       );
       setAuth({
-        authenticate: true,
-        user: data.user,
+        authenticate : true,
+        user : data.data.user,
       });
-    } else {
+    }else {
       setAuth({
-        authenticate: false,
-        user: null,
+        authenticate : false,
+        user : null,
       });
     }
+    
   }
 
   // check auth user
@@ -62,7 +63,7 @@ export default function AuthProvider({ children }) {
     if (data.success) {
       setAuth({
         authenticate: true,
-        user: data.user,
+        user: data.data.user,
       });
     } else {
       setAuth({
