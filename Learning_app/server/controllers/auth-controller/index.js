@@ -13,7 +13,6 @@ const registerUser = async (req,res) => {
         })
     }   
     
-    // 
 
     const hashPassword = await bcrypt.hash(password,10);
     const newUser = new User({userName,userEmail,role,password : hashPassword});
@@ -30,7 +29,7 @@ const registerUser = async (req,res) => {
 const loginUser = async (req,res) => {
     const {userEmail,password } = req.body;
     const checkUser = await User.findOne({userEmail});
-    if(!checkUser || !(await bcrypt.compare(password,checkUser.password))){
+    if(!checkUser || !( await bcrypt.compare(password,checkUser.password))){
         return res.status(401).json({
             success : false,
             message : 'Invaild credentials'
@@ -43,6 +42,7 @@ const loginUser = async (req,res) => {
         userEmail : checkUser.userEmail,
         role : checkUser.role,
     },'JWT_SECRET',{expiresIn : '120m'})
+    
     res.status(200).json({
         success : true,
         message : 'Logged in successfully',

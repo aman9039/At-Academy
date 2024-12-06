@@ -33,6 +33,7 @@ app.get("/",function(req,res){
 
 // routes configuration
 app.use("/auth",authRoutes);
+
 app.use((err,req,res,next) => {
     console.log(err.stack);
     res.status(500).json({
